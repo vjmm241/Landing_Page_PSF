@@ -524,8 +524,23 @@
         <div id="step-recover" style="display:none;">
             <p style="color:#ccc">Tu email:</p>
             <input type="email" id="rec-email" class="modal-input">
-            <button class="btn-brand" onclick="recover()" style="width:100%; margin-top:20px;">ENVIAR LINK</button>
+            <p style="color:#ccc; margin-top:10px;">Nueva Contraseña:</p>
+            <input type="password" id="rec-newp1" class="modal-input">
+            <input type="password" id="rec-newp2" class="modal-input" placeholder="Confirmar">
+            <button class="btn-brand" onclick="initiateRecovery()" style="width:100%; margin-top:20px;">ACEPTAR</button>
             <p class="link" onclick="showLogin()" style="margin-top:15px">Cancelar</p>
+        </div>
+
+        <div id="step-recover-verify" style="display:none;">
+            <h3 style="color:var(--primary); font-family:'Bebas Neue'; letter-spacing:1px; margin-bottom:10px;">
+                VERIFICACIÓN SEGURIDAD</h3>
+            <p style="color:#ccc; font-size:0.9rem;">Hemos enviado un código a tu email.<br>Introdúcelo para confirmar
+                el cambio.</p>
+            <input type="text" id="rec-otp" class="modal-input"
+                style="text-align:center; letter-spacing:4px; margin-top:15px;" placeholder="XXXXXX">
+            <button class="btn-brand" onclick="completeRecovery()" style="width:100%; margin-top:20px;">VERIFICAR Y
+                CAMBIAR</button>
+            <p class="link" onclick="showRecover()" style="margin-top:15px">Volver</p>
         </div>
 
         <div id="step-newpass" style="display:none;">
@@ -629,31 +644,66 @@
             }
         }
 
-        async function recover() {
+        let pendingRecoveryPass = null;
+
+        async function initiateRecovery() {
             const e = document.getElementById('rec-email').value;
+            const p1 = document.getElementById('rec-newp1').value;
+            const p2 = document.getElementById('rec-newp2').value;
+
+            if (!e || !p1) return alert("Completa todos los campos");
+            if (p1 !== p2) return alert("Las contraseñas no coinciden");
+
+            const btn = document.querySelector('#step-recover button');
+            const originalText = btn.innerText;
+            btn.innerText = "ENVIANDO..."; btn.disabled = true;
+
             try {
-                const { error } = await supaClient.auth.resetPasswordForEmail(e, {
-                    redirectTo: 'https://prosmart-demo.vercel.app/nuestra-solucion.html'
-                });
+                // Just trigger the OTP code email
+                const { error } = await supaClient.auth.resetPasswordForEmail(e);
                 if (error) throw error;
-                alert("Enlace enviado.");
-                showLogin();
-            } catch (err) { alert(err.message); }
+
+                pendingRecoveryPass = p1; // Store for next step
+                alert("Código enviado a tu correo.");
+                show('step-recover-verify');
+            } catch (err) {
+                alert("Error: " + err.message);
+            } finally {
+                btn.innerText = originalText; btn.disabled = false;
+            }
         }
 
-        async function updatePass() {
-            const p1 = document.getElementById('new-p1').value;
-            const p2 = document.getElementById('new-p2').value;
-            if (p1 !== p2) return alert("No coinciden");
+        async function completeRecovery() {
+            const e = document.getElementById('rec-email').value;
+            const t = document.getElementById('rec-otp').value.trim();
+
+            if (!t) return alert("Ingresa el código");
+
+            const btn = document.querySelector('#step-recover-verify button');
+            btn.innerText = "PROCESANDO..."; btn.disabled = true;
+
             try {
-                const { error } = await supaClient.auth.updateUser({ password: p1 });
+                // 1. Verify OTP -> Gets Session
+                const { data, error } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'recovery' });
                 if (error) throw error;
-                await supaClient.auth.signOut();
-                alert("Contraseña cambiada. Vuelve a entrar.");
-                window.location.hash = '';
-                showLogin();
-            } catch (err) { alert(err.message); }
+
+                // 2. Update User with new password
+                const { error: upError } = await supaClient.auth.updateUser({ password: pendingRecoveryPass });
+                if (upError) throw upError;
+
+                alert("¡Contraseña actualizada correctamente! Iniciando sesión...");
+
+                // 3. User is now logged in via verifyOtp, just close modal
+                document.getElementById('auth-modal').classList.remove('active');
+
+            } catch (err) {
+                alert("Error al verificar: " + err.message);
+            } finally {
+                btn.innerText = "VERIFICAR Y CAMBIAR"; btn.disabled = false;
+            }
         }
+
+        /* Legacy updatePass removed as it's merged into completeRecovery */
 
         // Initialize PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -902,7 +952,10 @@
             }
         }
         function show(id) {
-            ['step-login', 'step-verify', 'step-recover', 'step-newpass'].forEach(x => document.getElementById(x).style.display = 'none');
+            ['step-login', 'step-verify', 'step-recover', 'step-newpass', 'step-recover-verify'].forEach(x => {
+                const el = document.getElementById(x);
+                if (el) el.style.display = 'none';
+            });
             document.getElementById(id).style.display = 'block';
         }
         function showRecover() { show('step-recover'); }
