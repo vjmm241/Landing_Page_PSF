@@ -514,6 +514,11 @@
             <input type="text" id="otp" class="modal-input" style="text-align:center; letter-spacing:4px;"
                 placeholder="XXXXXX">
             <button class="btn-brand" onclick="verify()" style="width:100%; margin-top:20px;">VERIFICAR</button>
+            <p class="link" onclick="resendOtp()"
+                style="margin-top:20px; font-size:0.8rem; color:var(--text-secondary);">
+                ¿No llegó? <span style="color:var(--primary); text-decoration:underline;">Reenviar Código</span>
+            </p>
+            <p class="link" onclick="showLogin()" style="margin-top:10px; font-size:0.8rem;">Volver</p>
         </div>
 
         <div id="step-recover" style="display:none;">
@@ -580,13 +585,48 @@
         async function verify() {
             const e = document.getElementById('email').value;
             const t = document.getElementById('otp').value.trim();
+            if (!t) return alert("Ingresa el código de 6 dígitos.");
+
+            const btn = document.querySelector('#step-verify button');
+            const originalText = btn.innerText;
+            btn.innerText = "VERIFICANDO..."; btn.disabled = true;
+
             try {
-                let { error } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'signup' });
+                let { data, error } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'signup' });
+
+                // Fallback for different verification types if signup fails but code is valid (e.g. magiclink)
                 if (error) {
-                    const { error: e2 } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'email' });
-                    if (e2) throw error;
+                    console.log("Signup verify failed, trying magiclink/recovery...");
+                    const { data: d2, error: e2 } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'magiclink' });
+                    if (e2) {
+                        const { data: d3, error: e3 } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'recovery' });
+                        if (e3) throw error; // Throw original error if all fail
+                    }
                 }
-            } catch (err) { alert(err.message); }
+
+                // Success
+                alert("!Verificado Exitosamente!");
+                document.getElementById('auth-modal').classList.remove('active');
+
+            } catch (err) {
+                console.error(err);
+                alert("Error: " + err.message);
+            } finally {
+                btn.innerText = originalText; btn.disabled = false;
+            }
+        }
+
+        async function resendOtp() {
+            const e = document.getElementById('email').value;
+            if (!e) return alert("Email requerido");
+
+            try {
+                const { error } = await supaClient.auth.resend({ type: 'signup', email: e });
+                if (error) throw error;
+                alert("Código reenviado. Revisa SPAM.");
+            } catch (err) {
+                alert("Error al reenviar: " + err.message);
+            }
         }
 
         async function recover() {
