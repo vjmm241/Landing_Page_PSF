@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../Downloads/Capturas Web PSF-20260130T154804Z-3-001/Capturas Web PSF"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "Landing_Page_PSF"
+	}
+}

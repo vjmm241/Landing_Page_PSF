@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #030406;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            color: #f97316;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .card {
+            background-color: #f8fafc;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 16px 32px;
+            background-color: #ea580c;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 10px 20px rgba(234, 88, 12, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">PROSMART FACTORIES</div>
+        <div class="card">
+            <div class="title">Restablecer Contraseña</div>
+            <div class="subtitle">Has solicitado restablecer tu contraseña. Haz clic en el botón de abajo para elegir
+                una nueva.</div>
+
+            <a href="{{ .ConfirmationURL }}" class="btn">Restablecer mi Contraseña</a>
+
+            <p style="color: #475569; font-size: 14px; line-height: 1.6; margin-top: 25px;">
+                Si no has solicitado este cambio, puedes ignorar este correo con seguridad. El enlace expirará pronto.
+            </p>
+        </div>
+        <div class="footer">
+            © 2026 ProSmart Factories. Todos los derechos reservados.<br>
+            Este es un mensaje automático del sistema de seguridad, por favor no respondas.
+        </div>
+    </div>
+</body>
+
+</html>

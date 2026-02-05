@@ -1,0 +1,15 @@
+# Robots.txt para ProSmart Factories
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://prosmartfactories.com/sitemap.xml
+
+# Bloquear directorios internos
+Disallow: /_archive/
+Disallow: /.git/
+
+# Permitir recursos importantes
+Allow: /assets/
+Allow: /assets/images/
+Allow: /assets/js/
