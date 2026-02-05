@@ -158,10 +158,11 @@
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(3rem, 5vw, 5rem);
-            letter-spacing: 2px;
-            line-height: title;
+            letter-spacing: 0.5px;
+            /* Reduced from 2px */
+            line-height: 1;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, white 0%, var(--primary) 60%);
+            background: linear-gradient(135deg, white 0%, var(--primary) 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -171,6 +172,8 @@
             color: var(--text-secondary);
             margin-bottom: 40px;
             max-width: 550px;
+            letter-spacing: -0.01em;
+            /* Tighter reading */
         }
 
         /* --- BUTTONS --- */
@@ -214,29 +217,29 @@
             z-index: 1;
         }
 
-        /* --- CHAT INTERFACE --- */
+        /* --- CHAT INTERFACE IMPROVEMENTS --- */
         .chat-overlay {
-            width: 300px;
-            height: 600px;
+            width: 320px;
+            /* Slightly wider */
+            height: 650px;
             background: #0b141a;
-            border-radius: 35px;
-            /* Match phone frame */
+            border-radius: 40px;
+            /* Match new phone radius */
             overflow: hidden;
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            /* Transform is handled by JS */
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
         }
 
         .wa-header {
-            background: var(--wa-header);
-            padding: 16px;
+            background: #202c33;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            color: white;
+            height: 60px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -265,24 +268,26 @@
 
         .wa-msg {
             max-width: 80%;
-            padding: 10px 14px;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            padding: 8px 12px;
+            font-size: 0.93rem;
+            line-height: 1.35;
             position: relative;
             border-radius: 8px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+            margin-bottom: 4px;
         }
 
         .wa-msg.received {
-            background: var(--wa-bubble-in);
-            color: white;
+            background: #202c33;
+            color: rgba(255, 255, 255, 0.9);
             align-self: flex-start;
             border-top-left-radius: 0;
         }
 
         .wa-msg.sent {
-            background: var(--wa-bubble-out);
-            color: white;
+            background: #005c4b;
+            /* Authentic WA Dark Green */
+            color: #e9edef;
             align-self: flex-end;
             border-top-right-radius: 0;
         }
@@ -723,64 +728,93 @@
             if (!container) return;
 
             scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.z = 6;
+            camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 8; // Bit further back for the larger model
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Perf optimization
             container.appendChild(renderer.domElement);
 
-            // Lighting setup for "premium" look
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            // Studio Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
             scene.add(ambientLight);
 
-            const light1 = new THREE.DirectionalLight(0xffffff, 1);
-            light1.position.set(5, 5, 5);
-            scene.add(light1);
+            const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            keyLight.position.set(5, 5, 2);
+            scene.add(keyLight);
 
-            const light2 = new THREE.PointLight(0xf97316, 0.5);
-            light2.position.set(-5, -5, 2);
-            scene.add(light2);
+            const fillLight = new THREE.DirectionalLight(0xf97316, 0.8); // Orange tint
+            fillLight.position.set(-5, 0, 5);
+            scene.add(fillLight);
 
-            // Phone Body
+            const backLight = new THREE.PointLight(0xffffff, 1);
+            backLight.position.set(0, 5, -5);
+            scene.add(backLight);
+
+            // Phone Group
             const phoneGroup = new THREE.Group();
 
-            const bodyGeom = new THREE.BoxGeometry(2.4, 4.8, 0.25);
+            // 1. Create Body Shape with Rounded Corners
+            const width = 3.6;
+            const height = 7.2;
+            const radius = 0.45;
+
+            const shape = new THREE.Shape();
+            shape.moveTo(-width / 2 + radius, height / 2);
+            shape.lineTo(width / 2 - radius, height / 2);
+            shape.quadraticCurveTo(width / 2, height / 2, width / 2, height / 2 - radius);
+            shape.lineTo(width / 2, -height / 2 + radius);
+            shape.quadraticCurveTo(width / 2, -height / 2, width / 2 - radius, -height / 2);
+            shape.lineTo(-width / 2 + radius, -height / 2);
+            shape.quadraticCurveTo(-width / 2, -height / 2, -width / 2, -height / 2 + radius);
+            shape.lineTo(-width / 2, height / 2 - radius);
+            shape.quadraticCurveTo(-width / 2, height / 2, -width / 2 + radius, height / 2);
+
+            // 2. Extrude Settings for "Sleek" look
+            const extrudeSettings = {
+                steps: 1,
+                depth: 0.3,
+                bevelEnabled: true,
+                bevelThickness: 0.05,
+                bevelSize: 0.05,
+                bevelSegments: 4
+            };
+
+            const bodyGeom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            bodyGeom.center(); // Center the geometry
+
+            // Materials
             const bodyMat = new THREE.MeshPhysicalMaterial({
-                color: 0x0a0a0a,
-                metalness: 0.9,
+                color: 0x111111, // Darker Gray/Black
+                metalness: 0.8,
                 roughness: 0.2,
-                clearcoat: 1.0
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.1
             });
-            phone = new THREE.Mesh(bodyGeom, bodyMat);
-            phoneGroup.add(phone);
 
-            // Frame (Simulating metallic edges)
-            const frameGeom = new THREE.BoxGeometry(2.45, 4.85, 0.2);
-            const frameMat = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 1, roughness: 0.3 });
-            const frame = new THREE.Mesh(frameGeom, frameMat);
-            frame.position.z = -0.05;
-            phoneGroup.add(frame);
+            const body = new THREE.Mesh(bodyGeom, bodyMat);
+            phoneGroup.add(body);
 
-            // Notch / Dynamic Island
-            const notchGeom = new THREE.CapsuleGeometry(0.1, 0.4, 4, 8);
+            // 3. Side Frame (Simulated by the bevel) - we can emphasize it or leave it.
+            // 4. Dynamic Island / Notch
+            const notchGeom = new THREE.CapsuleGeometry(0.12, 0.8, 4, 12);
             const notchMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
             const notch = new THREE.Mesh(notchGeom, notchMat);
             notch.rotation.z = Math.PI / 2;
-            notch.position.set(0, 2.15, 0.13);
+            notch.position.set(0, 3.2, 0.16); // Position relative to new size
             phoneGroup.add(notch);
 
             scene.add(phoneGroup);
-            phone = phoneGroup; // Reference the group for rotation
+            phone = phoneGroup;
 
             function animate() {
                 requestAnimationFrame(animate);
-                const time = Date.now() * 0.001;
+                const time = Date.now() * 0.0005;
 
-                // Controlled rotation with subtle movement
-                phone.rotation.y = Math.sin(time * 0.5) * 0.15;
-                phone.rotation.x = Math.cos(time * 0.5) * 0.05;
+                // Subtle floating + rotation
+                phone.rotation.y = Math.sin(time) * 0.1;
+                phone.rotation.x = Math.cos(time * 0.8) * 0.05;
 
                 renderer.render(scene, camera);
                 updateOverlayPosition();
@@ -788,14 +822,19 @@
             animate();
         }
 
+        // --- OVERLAY SYNC ---
+        // Need to match the 3D plane. 
+        // Since we scale the phone, we need to scale the overlay or transform it carefully.
+        // Simplest way: The overlay is just HTML on top, we transform it sparingly.
         function updateOverlayPosition() {
             const overlay = document.getElementById('chat-overlay');
             if (!phone || !overlay) return;
 
-            // Apply tilt to HTML overlay to match 3D rotation
-            const ry = phone.rotation.y * 20; // Scale factor for visual tilt
-            const rx = -phone.rotation.x * 20;
-            overlay.style.transform = `rotateY(${ry}deg) rotateX(${rx}deg) translateZ(50px)`;
+            // Simple parallax tilt
+            const rotX = -phone.rotation.x * 15;
+            const rotY = phone.rotation.y * 15;
+
+            overlay.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
         }
 
         function setTyping(isTyping) {
@@ -843,7 +882,11 @@
 
             } catch (err) {
                 console.error("Upload Error:", err);
-                addMsg("❌ Error al procesar: " + (err.message || err.error_description || "Error desconocido"), 'received');
+                let msg = err.message || err.error_description || "Error desconocido";
+                if (msg.includes("JSON") || msg.includes("SyntaxError")) {
+                    msg = "Error de respuesta del servidor. El documento puede ser demasiado complejo o el servicio está saturado.";
+                }
+                addMsg("❌ Error al procesar: " + msg, 'received');
             } finally {
                 btn.innerHTML = originalTxt; btn.disabled = false;
             }
