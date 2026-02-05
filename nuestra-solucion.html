@@ -379,6 +379,18 @@
             }
         }
 
+        .link {
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 900px) {
             .demo-container {
                 grid-template-columns: 1fr;
@@ -491,32 +503,33 @@
                 <input type="password" id="pass" class="modal-input" placeholder="Contraseña">
                 <button class="btn-brand" onclick="login()" style="width:100%; margin-top:20px;">ENTRAR</button>
                 <div style="margin-top:15px;">
-                    <span class="link" onclick="toggleMode()">Registrarse</span> |
+                    <span id="toggle-link" class="link" onclick="toggleMode()">Registrarse</span> |
                     <span class="link" onclick="showRecover()">Recuperar Clave</span>
                 </div>
             </div>
-
-            <div id="step-verify" style="display:none;">
-                <p style="color:#ccc">Código recibido en email:</p>
-                <input type="text" id="otp" class="modal-input" style="text-align:center; letter-spacing:4px;"
-                    placeholder="XXXXXX">
-                <button class="btn-brand" onclick="verify()" style="width:100%; margin-top:20px;">VERIFICAR</button>
-            </div>
-
-            <div id="step-recover" style="display:none;">
-                <p style="color:#ccc">Tu email:</p>
-                <input type="email" id="rec-email" class="modal-input">
-                <button class="btn-brand" onclick="recover()" style="width:100%; margin-top:20px;">ENVIAR LINK</button>
-                <p class="link" onclick="showLogin()" style="margin-top:15px">Cancelar</p>
-            </div>
-
-            <div id="step-newpass" style="display:none;">
-                <p style="color:#ccc">Nueva Contraseña:</p>
-                <input type="password" id="new-p1" class="modal-input">
-                <input type="password" id="new-p2" class="modal-input" placeholder="Confirmar">
-                <button class="btn-brand" onclick="updatePass()" style="width:100%; margin-top:20px;">GUARDAR</button>
-            </div>
         </div>
+
+        <div id="step-verify" style="display:none;">
+            <p style="color:#ccc">Código recibido en email:</p>
+            <input type="text" id="otp" class="modal-input" style="text-align:center; letter-spacing:4px;"
+                placeholder="XXXXXX">
+            <button class="btn-brand" onclick="verify()" style="width:100%; margin-top:20px;">VERIFICAR</button>
+        </div>
+
+        <div id="step-recover" style="display:none;">
+            <p style="color:#ccc">Tu email:</p>
+            <input type="email" id="rec-email" class="modal-input">
+            <button class="btn-brand" onclick="recover()" style="width:100%; margin-top:20px;">ENVIAR LINK</button>
+            <p class="link" onclick="showLogin()" style="margin-top:15px">Cancelar</p>
+        </div>
+
+        <div id="step-newpass" style="display:none;">
+            <p style="color:#ccc">Nueva Contraseña:</p>
+            <input type="password" id="new-p1" class="modal-input">
+            <input type="password" id="new-p2" class="modal-input" placeholder="Confirmar">
+            <button class="btn-brand" onclick="updatePass()" style="width:100%; margin-top:20px;">GUARDAR</button>
+        </div>
+    </div>
     </div>
 
     <script>
@@ -835,7 +848,19 @@
             gsap.from(d, { scale: 0.8, opacity: 0, duration: 0.3, ease: "back.out(1.7)" });
         }
 
-        function toggleMode() { isSignUpMode = !isSignUpMode; document.querySelector('#step-login button').innerText = isSignUpMode ? "REGISTRARSE" : "ENTRAR"; }
+        function toggleMode() {
+            isSignUpMode = !isSignUpMode;
+            const btn = document.querySelector('#step-login button');
+            const link = document.getElementById('toggle-link');
+
+            if (isSignUpMode) {
+                btn.innerText = "REGISTRARSE";
+                link.innerText = "Volver al Login";
+            } else {
+                btn.innerText = "ENTRAR";
+                link.innerText = "Registrarse";
+            }
+        }
         function show(id) {
             ['step-login', 'step-verify', 'step-recover', 'step-newpass'].forEach(x => document.getElementById(x).style.display = 'none');
             document.getElementById(id).style.display = 'block';
