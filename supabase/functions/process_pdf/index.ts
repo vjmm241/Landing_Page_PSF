@@ -9,90 +9,89 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
+    // 1. Handle CORS Preflight
     if (req.method === 'OPTIONS') {
         return new Response('ok', { headers: corsHeaders })
     }
 
     try {
-        const formData = await req.formData()
+        // 2. Validate Content-Type
+        // Some clients might not send multipart/form-data correctly? 
+        // But let's assume req.formData() handles it.
+
+        const formData = await req.formData().catch((err: any) => {
+            throw new Error(`Error parsing FormData: ${err.message}`);
+        });
+
         const file = formData.get('pdf') as File
-        const userId = formData.get('userId') as string // User ID is needed
+        const userId = formData.get('userId') as string
 
         if (!file || !file.type.includes('pdf')) {
             return new Response(
-                JSON.stringify({ error: 'Archivo PDF requerido' }),
+                JSON.stringify({ error: 'Archivo PDF requerido. Formato recibido: ' + (file?.type || 'null') }),
                 { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
             )
         }
 
         console.log('📄 Procesando para:', userId, 'Archivo:', file.name)
-
         const arrayBuffer = await file.arrayBuffer()
         const uint8Array = new Uint8Array(arrayBuffer)
 
-        // EXTRACCIÓN INTELIGENTE
+        // 3. EXTRACCIÓN INTELIGENTE
+        // Wrap logic in internal checks
         let text = await smartExtraction(uint8Array)
 
         if (!text || text.trim().length === 0) {
-            return new Response(
-                JSON.stringify({ error: 'No se pudo extraer texto del PDF' }),
-                { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-            )
+            throw new Error('No se pudo extraer texto legible del PDF (vacío o protegido).');
         }
 
         console.log('✅ Texto extraído:', text.length, 'caracteres')
 
-        // Dividir en chunks
+        // 4. CHUNKING & EMBEDDING
         const chunks = splitIntoChunks(text, 1000)
         console.log('📦 Chunks:', chunks.length)
 
-        // Generar embeddings
         const embeddingsWithText = await generateEmbeddings(chunks)
 
-        // Guardar en Supabase
+        // 5. SUPABASE OPS
         const supabase = createClient(
             Deno.env.get('SUPABASE_URL') ?? '',
             Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
         )
 
-        // Create Document Record
+        // Upsert Document
         const { data: docData, error: insertDocError } = await supabase
             .from('documents')
             .upsert({
                 user_id: userId,
                 file_name: file.name,
-                file_path: `${userId}/${Date.now()}_${file.name}`, // Mock path since we handle upload here
+                file_path: `${userId}/${Date.now()}_${file.name}`,
                 processed: true,
                 created_at: new Date()
-            }, { onConflict: 'user_id' }) // Just for demo, usually per file
+            }, { onConflict: 'user_id' }) // Ideally per file, but sticking to existing logic
             .select()
             .single()
 
-        if (insertDocError) throw insertDocError
+        if (insertDocError) throw new Error(`DB Error (Doc): ${insertDocError.message}`)
+
         const documentId = docData.id
 
-        // Insert Embeddings
+        // Insert Chunks
         const { error: insertError } = await supabase
             .from('document_chunks')
             .insert(embeddingsWithText.map((item, idx) => ({
                 document_id: documentId,
                 content: item.text,
                 embedding: item.embedding,
-                chunk_index: idx, // Adding index for ordering
+                chunk_index: idx,
                 metadata: {
-                    filename: file.name,
-                    total_chunks: embeddingsWithText.length
+                    filename: file.name
                 }
             })))
 
-        if (insertError) {
-            // Fallback: maybe table is named differently? 
-            console.error("Error inserting chunks:", insertError)
-            // Try 'documents' as they requested, but it might conflict with ID.
-            // I will assume table exists.
-            throw insertError
-        }
+        if (insertError) throw new Error(`DB Error (Chunks): ${insertError.message}`)
 
+        // 6. SUCCESS RESPONSE
         return new Response(
             JSON.stringify({
                 success: true,
@@ -101,14 +100,27 @@ serve(async (req) => {
                 filename: file.name,
                 message: 'PDF procesado correctamente'
             }),
-            { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            {
+                status: 200,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+            }
         )
 
     } catch (error) {
-        console.error('❌ Error:', error)
+        console.error('❌ SYSTEM ERROR:', error)
+
+        // CRITICAL: Always return JSON, never plain text or HTML
+        const safeError = error instanceof Error ? error.message : String(error);
+
         return new Response(
-            JSON.stringify({ error: error.message }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+            JSON.stringify({
+                error: safeError,
+                details: "Consulte los logs del servidor para más detalles."
+            }),
+            {
+                status: 500,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+            }
         )
     }
 })
