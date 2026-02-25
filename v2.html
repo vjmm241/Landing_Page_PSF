@@ -4605,20 +4605,44 @@
                 </div>
                 <!-- RIGHT: iPhone mockup -->
                 <div class="hero-v2-visual">
-                    <div style="position:relative;">
+                    <div class="hero-phone-wrapper">
                         <div class="phone-badge phone-badge-live"><span class="live-dot"></span> Demo en vivo</div>
-                        <div class="phone-badge phone-badge-speed"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> &lt;3 seg respuesta</div>
-                        <div class="hero-iphone-frame">
-                            <div class="hero-iphone-notch"></div>
-                            <div class="hero-iphone-screen">
-                                <div class="hiw-header">
-                                    <span class="hiw-back">‹</span>
-                                    <div class="hiw-avatar"><img src="assets/images/logo_psf_1_-removebg-preview.png" alt="PSF"></div>
-                                    <div class="hiw-info"><div class="hiw-name">Encargado Digital</div><div class="hiw-status">en línea</div></div>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aebac1" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="#aebac1"/><circle cx="12" cy="12" r="1.5" fill="#aebac1"/><circle cx="12" cy="19" r="1.5" fill="#aebac1"/></svg>
+                        <div class="phone-badge phone-badge-speed"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> &lt;3 seg</div>
+                        <div class="wa-iphone-mockup hero-phone-tilt">
+                            <div class="wa-dynamic-island"></div>
+                            <div class="wa-phone-screen">
+                                <div class="wa-status-bar">
+                                    <div class="wa-status-bar-left">9:41</div>
+                                    <div class="wa-status-bar-right">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 3C7.46 3 3.34 4.78.29 7.67c-.18.18-.29.43-.29.71 0 .28.11.53.29.71l2.48 2.48c.18.18.43.29.71.29.27 0 .52-.11.7-.28.79-.74 1.69-1.36 2.66-1.85.33-.16.56-.5.56-.9v-3.1c1.45-.48 3-.73 4.6-.73s3.15.25 4.6.73v3.1c0 .4.23.74.56.9.98.49 1.87 1.12 2.67 1.85.18.18.43.28.7.28.28 0 .53-.11.71-.29l2.48-2.48c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71C20.66 4.78 16.54 3 12 3z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+                                    </div>
+                                </div>
+                                <div class="wa-header">
+                                    <svg class="wa-header-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                                    <div class="wa-header-avatar">
+                                        <img src="assets/images/logo_psf_1_-removebg-preview.png" alt="PSF Logo" style="width:100%;height:100%;object-fit:contain;padding:4px;border-radius:50%;">
+                                        <div class="wa-online-indicator"></div>
+                                    </div>
+                                    <div class="wa-header-info">
+                                        <div class="wa-header-name">Encargado Digital</div>
+                                        <div class="wa-header-status">En línea</div>
+                                    </div>
+                                    <div class="wa-header-icons">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.07 3.37a2 2 0 0 1 2-.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                                    </div>
                                 </div>
                                 <div class="hiw-chat" id="hero-chat-v2"><!-- JS populated --></div>
-                                <div class="hiw-input-bar"><div class="hiw-input-box">Escribe un mensaje…</div><div class="hiw-send-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></div></div>
+                                <div class="wa-chat-input-area">
+                                    <div class="wa-input-icons-left">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                                    </div>
+                                    <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                    <button class="wa-send-button">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4638,22 +4662,37 @@
             <p class="logos-section-label">Activo en plantas de los sectores</p>
             <div class="logos-track-wrapper">
                 <div class="logos-track">
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>Automoción</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Alimentación</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M21 12h-2M5 12H3M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 21v-2M12 5V3"/></svg><span>Metalurgia</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Electrónica</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Maquinaria</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Farmacéutica</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.07 3.37a2 2 0 0 1 2-.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Plástico</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Química</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>Automoción</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Alimentación</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M21 12h-2M5 12H3M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 21v-2M12 5V3"/></svg><span>Metalurgia</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Electrónica</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Maquinaria</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Farmacéutica</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.07 3.37a2 2 0 0 1 2-.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Plástico</span></div>
-                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Química</span></div>
+                    <!-- Metalurgia: gear/cog -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Metalurgia</span></div>
+                    <!-- Andamios: scaffolding structure (vertical poles + horizontal bars) -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="2" x2="5" y2="22"/><line x1="19" y1="2" x2="19" y2="22"/><line x1="12" y1="5" x2="12" y2="22"/><line x1="2" y1="6" x2="22" y2="6"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="2" y1="2" x2="22" y2="2"/></svg><span>Andamios</span></div>
+                    <!-- CNC: precision crosshair/target + tool path -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="2" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="22" y2="12"/></svg><span>CNC</span></div>
+                    <!-- Automoción: steering wheel -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="9.35" y1="10.35" x2="3.93" y2="6.93"/><line x1="14.65" y1="10.35" x2="20.07" y2="6.93"/></svg><span>Automoción</span></div>
+                    <!-- Soldadura: welding arc/spark (lightning) -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Soldadura</span></div>
+                    <!-- Mantenimiento: wrench -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Mantenimiento</span></div>
+                    <!-- Electrónica: CPU chip -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="7" width="10" height="10" rx="1"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="1" y1="15" x2="4" y2="15"/></svg><span>Electrónica</span></div>
+                    <!-- Química: flask/beaker -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v7l4 8H5l4-8V3z"/><line x1="9" y1="3" x2="15" y2="3"/><path d="M6 17h12"/></svg><span>Química</span></div>
+                    <!-- Logística: truck -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="13" rx="1"/><path d="M15 8h5l3 5v4h-8V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Logística</span></div>
+                    <!-- Alimentación: factory/plant building -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20V9l5-3v3l5-3v3l5-3v14H2z"/><rect x="17" y="4" width="5" height="16"/><line x1="17" y1="9" x2="22" y2="9"/></svg><span>Alimentación</span></div>
+                    <!-- Repeat for infinite scroll -->
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Metalurgia</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="2" x2="5" y2="22"/><line x1="19" y1="2" x2="19" y2="22"/><line x1="12" y1="5" x2="12" y2="22"/><line x1="2" y1="6" x2="22" y2="6"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="2" y1="2" x2="22" y2="2"/></svg><span>Andamios</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="2" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="22" y2="12"/></svg><span>CNC</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="9.35" y1="10.35" x2="3.93" y2="6.93"/><line x1="14.65" y1="10.35" x2="20.07" y2="6.93"/></svg><span>Automoción</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>Soldadura</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Mantenimiento</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="7" width="10" height="10" rx="1"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="1" y1="15" x2="4" y2="15"/></svg><span>Electrónica</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v7l4 8H5l4-8V3z"/><line x1="9" y1="3" x2="15" y2="3"/><path d="M6 17h12"/></svg><span>Química</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="13" rx="1"/><path d="M15 8h5l3 5v4h-8V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Logística</span></div>
+                    <div class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20V9l5-3v3l5-3v3l5-3v14H2z"/><rect x="17" y="4" width="5" height="16"/><line x1="17" y1="9" x2="22" y2="9"/></svg><span>Alimentación</span></div>
                 </div>
             </div>
         </section>
@@ -8566,15 +8605,15 @@
         .logo-item span { font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 
         /* Hero metrics bar */
-        .hero-metrics-bar { display: flex; justify-content: center; gap: 0; margin-top: 60px; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; max-width: 700px; margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.02); }
-        .hero-metric { flex: 1; padding: 20px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,0.07); position: relative; }
+        .hero-metrics-bar { display: flex; justify-content: center; gap: 0; margin-top: 60px; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; overflow: hidden; max-width: 900px; width: 100%; margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); }
+        .hero-metric { flex: 1; padding: 28px 16px; text-align: center; border-right: 1px solid rgba(255,255,255,0.09); position: relative; min-width: 0; }
         .hero-metric:last-child { border-right: none; }
-        .hero-metric-value { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--primary); letter-spacing: 1px; line-height: 1; }
-        .hero-metric-label { font-size: 0.7rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.5px; line-height: 1.3; }
+        .hero-metric-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--primary); letter-spacing: 1px; line-height: 1; }
+        .hero-metric-label { font-size: 0.62rem; color: rgba(255,255,255,0.7); margin-top: 8px; letter-spacing: 1px; line-height: 1.4; font-weight: 600; text-transform: uppercase; }
         @media (max-width: 640px) {
             .hero-metrics-bar { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; }
             .hero-metric:nth-child(2) { border-right: none; }
-            .hero-metric:nth-child(1), .hero-metric:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .hero-metric:nth-child(1), .hero-metric:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.09); }
         }
         /* Testimonials section */
         .testimonials-section { padding: 120px 0; position: relative; z-index: 2; }
@@ -8605,7 +8644,11 @@
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s; padding: 0 28px; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
         .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
         /* Hero iPhone Mockup V2 */
-        .hero-v2 { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
+        .hero-v2 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
+        .hero-phone-wrapper { position: relative; }
+        .wa-iphone-mockup.hero-phone-tilt { animation: heroPhoneFloat 5s ease-in-out infinite !important; box-shadow: 0 0 0 3px #2a2a2a, 0 0 0 6px #1a1a1a, 0 60px 120px rgba(0,0,0,0.8), 0 0 100px rgba(249,115,22,0.15) !important; }
+        .wa-iphone-mockup.hero-phone-tilt:hover { animation-play-state: paused !important; transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) !important; }
+        @keyframes heroPhoneFloat { 0%,100% { transform: perspective(1200px) rotateX(2deg) rotateY(-8deg) translateY(0); } 50% { transform: perspective(1200px) rotateX(1deg) rotateY(-6deg) translateY(-14px); } }
         .hero-v2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; width: 100%; margin: 0 auto; }
         .hero-v2-text { text-align: left; }
         .hero-v2-text .hero-title { text-align: left; }
