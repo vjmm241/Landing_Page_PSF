@@ -12,7 +12,7 @@
         },
         {
             "source": "/v2",
-            "destination": "/index-v2"
+            "destination": "/index-v2.html"
         }
     ]
 }
