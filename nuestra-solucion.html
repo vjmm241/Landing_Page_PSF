@@ -24,6 +24,14 @@
         rel="stylesheet">
 
     <style>
+        /* Force dark background so grid is visible */
+        body {
+            background-color: #0f172a;
+            /* Slate 900 */
+            min-height: 100vh;
+            position: relative;
+        }
+
         :root {
             /* === COLOR PRIMITIVES === */
             --color-navy-950: #0a0f1c;
@@ -477,49 +485,158 @@
             display: inline-block;
             padding: 8px 16px;
             border-radius: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            margin: 0 5px;
-            border: 1px solid transparent;
-        }
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 24px;
+            border-radius: 8px;
 
-        .link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-color: var(--primary);
-            text-decoration: none;
-        }
-
-        #toggle-link {
-            color: var(--primary);
-            border-color: rgba(249, 115, 22, 0.3);
-        }
-
-        @media (max-width: 900px) {
-            .demo-container {
-                grid-template-columns: 1fr;
-                padding-top: 100px;
-                text-align: center;
+            .link {
+                color: #e9edef !important;
+                cursor: pointer;
+                font-size: 0.95rem;
+                font-weight: 600;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 24px;
+                border-radius: 8px;
+                background: #202c33 !important;
+                /* Solid WhatsApp Dark */
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                text-decoration: none !important;
+                letter-spacing: 0.5px;
+                margin: 0 8px;
             }
 
-            .text-side p {
-                margin-left: auto;
-                margin-right: auto;
+            .link:hover {
+                background: #2a3942 !important;
+                border-color: var(--primary) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
             }
 
-            .mockup-3d-wrapper {
-                height: 600px;
+            /* --- BUTTONS HARDENING --- */
+            .btn-brand {
+                background: var(--primary) !important;
+                color: white !important;
+                opacity: 1 !important;
+                border: none !important;
+                box-shadow: 0 4px 10px rgba(234, 88, 12, 0.4) !important;
+                font-weight: 800 !important;
+                /* Make sure text is readable */
             }
-        }
+
+            .btn-brand:hover {
+                background: #c2410c !important;
+                /* Darker orange */
+            }
+
+            .link:hover {
+                background: #2a3942 !important;
+                border-color: var(--primary) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            }
+
+            #toggle-link {
+                background: var(--primary) !important;
+                color: white !important;
+                border-color: var(--primary) !important;
+            }
+
+            #toggle-link:hover {
+                background: #ea580c !important;
+                /* Darker orange */
+            }
+
+            .grid-container {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .grid-lines {
+                position: absolute;
+                inset: -50%;
+                width: 200%;
+                height: 200%;
+                background-image:
+                    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                background-size: 60px 60px;
+                transform: rotateX(60deg) translateY(-100px);
+                animation: gridMove 20s linear infinite;
+            }
+
+            @keyframes gridMove {
+                0% {
+                    transform: rotateX(60deg) translateY(0);
+                }
+
+                100% {
+                    transform: rotateX(60deg) translateY(60px);
+                }
+            }
+
+            .particle {
+                position: absolute;
+                background: var(--primary);
+                border-radius: 50%;
+                opacity: 0.3;
+                animation: floatP 15s infinite ease-in-out;
+                pointer-events: none;
+            }
+
+            @keyframes floatP {
+
+                0%,
+                100% {
+                    transform: translateY(0) translateX(0);
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 0.4;
+                }
+
+                100% {
+                    transform: translateY(-100vh) translateX(50px);
+                    opacity: 0;
+                }
+            }
+
+            @media (max-width: 900px) {
+                .demo-container {
+                    grid-template-columns: 1fr;
+                    padding-top: 100px;
+                    text-align: center;
+                }
+
+                .text-side p {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .mockup-3d-wrapper {
+                    height: 600px;
+                }
+            }
     </style>
 </head>
 
 <body>
-    <div class="grid-container" id="bg-particles">
+    <div class="grid-container" id="bg-particles" style="z-index: 0; pointer-events: none;">
         <div class="grid-lines"></div>
-        <!-- Particles injected by JS -->
     </div>
 
-    <nav>
+    <!-- Ensure Content is above background -->
+    <nav style="position: relative; z-index: 10;">
         <a href="index.html" class="logo">PROSMART <span>FACTORIES</span></a>
         <a href="index.html" class="back-link">← Inicio</a>
     </nav>
@@ -557,10 +674,10 @@
             <div class="chat-overlay" id="chat-overlay">
                 <div class="wa-header">
                     <div class="wa-avatar">
-                        <img src="assets/images/psf_logo_square.png" alt="Profile">
+                        <img src="assets/images/logo_psf_1_-removebg-preview.png" alt="Profile">
                     </div>
                     <div class="wa-status">
-                        <h3>ProSmart AI</h3>
+                        <h3>Encargado Digital</h3>
                         <p>en línea</p>
                     </div>
                 </div>
@@ -572,13 +689,7 @@
                 <div class="wa-footer">
                     <button class="wa-send" style="background:transparent; margin-right:5px; width:30px;"
                         title="Emojis">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                        </svg>
+                        <span style="font-size:1.2rem;">😊</span>
                     </button>
                     <input type="file" id="chat-image-upload" accept="image/*" style="display:none"
                         onchange="handleImageSelect(event)">
@@ -638,32 +749,23 @@
         </div>
 
         <div id="step-recover" style="display:none;">
-            <p style="color:#ccc">Tu email:</p>
-            <input type="email" id="rec-email" class="modal-input">
-            <p style="color:#ccc; margin-top:10px;">Nueva Contraseña:</p>
-            <input type="password" id="rec-newp1" class="modal-input">
-            <input type="password" id="rec-newp2" class="modal-input" placeholder="Confirmar">
-            <button class="btn-brand" onclick="initiateRecovery()" style="width:100%; margin-top:20px;">ACEPTAR</button>
+            <p style="color:#ccc">Ingresa tu email para recibir el enlace:</p>
+            <input type="email" id="rec-email" class="modal-input" placeholder="tu@email.com">
+            <button class="btn-brand" onclick="initiateRecovery()" style="width:100%; margin-top:20px;">ENVIAR
+                ENLACE</button>
             <p class="link" onclick="showLogin()" style="margin-top:15px">Cancelar</p>
         </div>
 
-        <div id="step-recover-verify" style="display:none;">
-            <h3 style="color:var(--primary); font-family:'Bebas Neue'; letter-spacing:1px; margin-bottom:10px;">
-                VERIFICACIÓN SEGURIDAD</h3>
-            <p style="color:#ccc; font-size:0.9rem;">Hemos enviado un código a tu email.<br>Introdúcelo para confirmar
-                el cambio.</p>
-            <input type="text" id="rec-otp" class="modal-input"
-                style="text-align:center; letter-spacing:4px; margin-top:15px;" placeholder="XXXXXX">
-            <button class="btn-brand" onclick="completeRecovery()" style="width:100%; margin-top:20px;">VERIFICAR Y
-                CAMBIAR</button>
-            <p class="link" onclick="showRecover()" style="margin-top:15px">Volver</p>
-        </div>
+        <!-- REMOVED STEP-RECOVER-VERIFY (OTP) -->
 
         <div id="step-newpass" style="display:none;">
-            <p style="color:#ccc">Nueva Contraseña:</p>
-            <input type="password" id="new-p1" class="modal-input">
-            <input type="password" id="new-p2" class="modal-input" placeholder="Confirmar">
-            <button class="btn-brand" onclick="updatePass()" style="width:100%; margin-top:20px;">GUARDAR</button>
+            <h3 style="color:var(--primary); font-family:'Bebas Neue'; letter-spacing:1px; margin-bottom:10px;">
+                RESTABLECER CONTRASEÑA</h3>
+            <p style="color:#ccc">Ingresa tu nueva clave definitiva:</p>
+            <input type="password" id="new-p1" class="modal-input" placeholder="Nueva Contraseña">
+            <input type="password" id="new-p2" class="modal-input" placeholder="Confirmar Contraseña">
+            <button class="btn-brand" onclick="updatePass()" style="width:100%; margin-top:20px;">CAMBIAR MI
+                CONTRASEÑA</button>
         </div>
     </div>
     </div>
@@ -762,26 +864,26 @@
 
         let pendingRecoveryPass = null;
 
+        // Initialize recovery (Send Link)
         async function initiateRecovery() {
             const e = document.getElementById('rec-email').value;
-            const p1 = document.getElementById('rec-newp1').value;
-            const p2 = document.getElementById('rec-newp2').value;
-
-            if (!e || !p1) return alert("Completa todos los campos");
-            if (p1 !== p2) return alert("Las contraseñas no coinciden");
+            if (!e) return alert("Ingresa tu email");
 
             const btn = document.querySelector('#step-recover button');
             const originalText = btn.innerText;
             btn.innerText = "ENVIANDO..."; btn.disabled = true;
 
             try {
-                // Just trigger the OTP code email
-                const { error } = await supaClient.auth.resetPasswordForEmail(e);
+                // Send magic link for recovery
+                // redirectTo points back to this page. Supabase appends #access_token=...&type=recovery
+                const { error } = await supaClient.auth.resetPasswordForEmail(e, {
+                    redirectTo: window.location.href
+                });
                 if (error) throw error;
 
-                pendingRecoveryPass = p1; // Store for next step
-                alert("Código enviado a tu correo.");
-                show('step-recover-verify');
+                alert("✅ Correo enviado. Revisa tu bandeja de entrada y haz clic en el enlace 'Restablecer Contraseña'.");
+                document.getElementById('auth-modal').classList.remove('active');
+
             } catch (err) {
                 alert("Error: " + err.message);
             } finally {
@@ -789,33 +891,30 @@
             }
         }
 
-        async function completeRecovery() {
-            const e = document.getElementById('rec-email').value;
-            const t = document.getElementById('rec-otp').value.trim();
+        // Update Password (After clicking link)
+        async function updatePass() {
+            const p1 = document.getElementById('new-p1').value;
+            const p2 = document.getElementById('new-p2').value;
 
-            if (!t) return alert("Ingresa el código");
+            if (!p1) return alert("Ingresa una contraseña.");
+            if (p1 !== p2) return alert("Las contraseñas no coinciden.");
 
-            const btn = document.querySelector('#step-recover-verify button');
-            btn.innerText = "PROCESANDO..."; btn.disabled = true;
+            const btn = document.querySelector('#step-newpass button');
+            btn.innerText = "ACTUALIZANDO..."; btn.disabled = true;
 
             try {
-                // 1. Verify OTP -> Gets Session
-                const { data, error } = await supaClient.auth.verifyOtp({ email: e, token: t, type: 'recovery' });
+                const { error } = await supaClient.auth.updateUser({ password: p1 });
                 if (error) throw error;
 
-                // 2. Update User with new password
-                const { error: upError } = await supaClient.auth.updateUser({ password: pendingRecoveryPass });
-                if (upError) throw upError;
+                alert("✅ ¡Contraseña cambiada con éxito! Ya puedes iniciar sesión.");
 
-                alert("¡Contraseña actualizada correctamente! Iniciando sesión...");
-
-                // 3. User is now logged in via verifyOtp, just close modal
-                document.getElementById('auth-modal').classList.remove('active');
+                // Clear URL hash to prevent loop
+                history.replaceState(null, null, ' ');
+                window.location.reload();
 
             } catch (err) {
-                alert("Error al verificar: " + err.message);
-            } finally {
-                btn.innerText = "VERIFICAR Y CAMBIAR"; btn.disabled = false;
+                alert("Error al actualizar: " + err.message);
+                btn.innerText = "REINTENTAR"; btn.disabled = false;
             }
         }
 

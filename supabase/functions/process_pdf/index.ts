@@ -1,6 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-import pdfParse from 'npm:pdf-parse'
 import { TextractClient, AnalyzeDocumentCommand } from "npm:@aws-sdk/client-textract"
 
 const corsHeaders = {
@@ -37,9 +36,9 @@ serve(async (req) => {
         const arrayBuffer = await file.arrayBuffer()
         const uint8Array = new Uint8Array(arrayBuffer)
 
-        // 3. EXTRACCIÓN INTELIGENTE
-        // Wrap logic in internal checks
-        let text = await smartExtraction(uint8Array)
+        // 3. EXTRACCIÓN (TEXTRACT ONLY FOR STABILITY)
+        // Removed pdf-parse to reduce bundle size and prevent timeouts
+        let text = await extractWithTextract(uint8Array)
 
         if (!text || text.trim().length === 0) {
             throw new Error('No se pudo extraer texto legible del PDF (vacío o protegido).');
@@ -125,27 +124,8 @@ serve(async (req) => {
     }
 })
 
-// EXTRACCIÓN INTELIGENTE
-async function smartExtraction(pdfBuffer: Uint8Array): Promise<string> {
-    try {
-        // 1. Primero intenta extracción simple
-        const simpleResult = await pdfParse(pdfBuffer)
+// Unused smartExtraction removed. Direct Textract usage.
 
-        // 2. Si tiene suficiente texto (>500 chars), úsalo
-        if (simpleResult.text.length > 500) {
-            console.log('✅ Extracción simple exitosa')
-            return simpleResult.text
-        }
-
-        // 3. Si es muy corto, probablemente tiene imágenes → usa Textract
-        console.log('⚠️ Texto insuficiente, usando AWS Textract...')
-        return await extractWithTextract(pdfBuffer)
-
-    } catch (error) {
-        console.log('⚠️ Error en extracción simple, fallback a Textract')
-        return await extractWithTextract(pdfBuffer)
-    }
-}
 
 // AWS TEXTRACT
 async function extractWithTextract(pdfBuffer: Uint8Array): Promise<string> {
