@@ -4575,8 +4575,6 @@
             <a href="#demo" onclick="closeMobileNav()">Demo</a>
             <a href="#calculadora" onclick="closeMobileNav()">Calcular</a>
             <a href="#pricing" onclick="closeMobileNav()">Precios</a>
-            <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
-            <a href="nuestra-solucion.html" style="color:var(--primary);">Probar Demo →</a>
         </div>
         <div class="scroll-progress" id="scroll-progress"></div>
     </header>
@@ -4606,9 +4604,7 @@
                 <!-- RIGHT: iPhone mockup -->
                 <div class="hero-v2-visual">
                     <div class="hero-phone-wrapper">
-                        <div class="phone-badge phone-badge-live"><span class="live-dot"></span> Demo en vivo</div>
-                        <div class="phone-badge phone-badge-speed"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> &lt;3 seg</div>
-                        <div class="wa-iphone-mockup hero-phone-tilt">
+                        <div class="wa-iphone-mockup">
                             <div class="wa-dynamic-island"></div>
                             <div class="wa-phone-screen">
                                 <div class="wa-status-bar">
@@ -4633,7 +4629,7 @@
                                         <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
                                     </div>
                                 </div>
-                                <div class="hiw-chat" id="hero-chat-v2"><!-- JS populated --></div>
+                                <div class="wa-chat-area" id="hero-chat-v2" style="display:flex;flex-direction:column;gap:8px;"><!-- JS populated --></div>
                                 <div class="wa-chat-input-area">
                                     <div class="wa-input-icons-left">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
@@ -4644,6 +4640,13 @@
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="wa-response-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            <span>Respuesta en 3 segundos</span>
                         </div>
                     </div>
                 </div>
@@ -8645,10 +8648,7 @@
         .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
         /* Hero iPhone Mockup V2 */
         .hero-v2 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
-        .hero-phone-wrapper { position: relative; }
-        .wa-iphone-mockup.hero-phone-tilt { animation: heroPhoneFloat 5s ease-in-out infinite !important; box-shadow: 0 0 0 3px #2a2a2a, 0 0 0 6px #1a1a1a, 0 60px 120px rgba(0,0,0,0.8), 0 0 100px rgba(249,115,22,0.15) !important; }
-        .wa-iphone-mockup.hero-phone-tilt:hover { animation-play-state: paused !important; transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) !important; }
-        @keyframes heroPhoneFloat { 0%,100% { transform: perspective(1200px) rotateX(2deg) rotateY(-8deg) translateY(0); } 50% { transform: perspective(1200px) rotateX(1deg) rotateY(-6deg) translateY(-14px); } }
+        .hero-phone-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; }
         .hero-v2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; width: 100%; margin: 0 auto; }
         .hero-v2-text { text-align: left; }
         .hero-v2-text .hero-title { text-align: left; }
