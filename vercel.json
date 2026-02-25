@@ -10,9 +10,5 @@
             "source": "/nuestra-solucion",
             "destination": "/nuestra-solucion.html"
         },
-        {
-            "source": "/v2",
-            "destination": "/index-v2.html"
-        }
     ]
 }
