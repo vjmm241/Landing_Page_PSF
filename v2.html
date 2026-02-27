@@ -3564,12 +3564,13 @@
             background: var(--wa-darker);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex-shrink: 0;
         }
 
         .wa-input-icons-left {
-            flex: 0 0 24px;
+            flex-shrink: 0;
+            width: 24px;
         }
 
         .wa-input-icons-left svg {
@@ -3579,23 +3580,35 @@
             display: block;
         }
 
+        /* Wrapper que contiene input + botón — el botón va absoluto dentro */
+        .wa-input-wrapper {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
         .wa-chat-input {
-            flex: 1 1 0;
+            width: 100%;
             min-width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
-            padding: 9px 12px;
+            padding: 9px 46px 9px 14px;
             color: #e9edef;
             font-size: 0.85rem;
             font-family: inherit;
         }
 
+        /* Botón posicionado absolutamente — siempre visible, nunca desplazado */
         .wa-send-button {
-            flex: 0 0 40px;
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
             background: var(--wa-green);
             border: none;
             border-radius: 50%;
@@ -3606,8 +3619,8 @@
         }
 
         .wa-send-button svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             color: white;
         }
 
@@ -4596,10 +4609,12 @@
                                     <div class="wa-input-icons-left">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                                     </div>
-                                    <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
-                                    <button class="wa-send-button">
-                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                                    </button>
+                                    <div class="wa-input-wrapper">
+                                        <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                        <button class="wa-send-button">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -6083,13 +6098,14 @@
                                                 <line x1="15" y1="9" x2="15.01" y2="9" />
                                             </svg>
                                         </div>
-                                        <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje"
-                                            readonly>
-                                        <button class="wa-send-button">
-                                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                            </svg>
-                                        </button>
+                                        <div class="wa-input-wrapper">
+                                            <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                            <button class="wa-send-button">
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -8685,7 +8701,7 @@
         @media (max-width: 480px) {
             .wa-iphone-mockup { width: 260px; height: 550px; border-radius: 40px; }
             .wa-phone-screen { border-radius: 40px 40px 0 0; }
-            .wa-send-button { flex: 0 0 34px; width: 34px; height: 34px; min-width: 34px; }
+            .wa-send-button { width: 32px; height: 32px; }
             .hero-v2 { padding: 90px 16px 50px; }
             .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
             .hero-metric { padding: 20px 10px; }
