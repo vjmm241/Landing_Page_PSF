@@ -3722,9 +3722,10 @@
         }
 
         .wa-chat-input-area {
-            padding: 12px 12px 16px 12px;
+            padding: 10px 10px 14px 10px;
             background: var(--wa-darker);
-            display: flex;
+            display: grid;
+            grid-template-columns: 26px 1fr 40px;
             align-items: center;
             gap: 8px;
         }
@@ -3736,20 +3737,20 @@
         }
 
         .wa-chat-input {
-            flex: 1;
+            width: 100%;
             min-width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
-            padding: 10px 18px;
+            padding: 9px 12px;
             color: #e9edef;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: inherit;
         }
 
         .wa-send-button {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             background: var(--wa-green);
             border: none;
             border-radius: 50%;
@@ -4569,14 +4570,9 @@
                 border-radius: 40px 40px 0 0;
             }
 
-            .wa-chat-input-area {
-                padding: 10px 16px 16px 10px;
-            }
-
             .wa-send-button {
                 width: 36px;
                 height: 36px;
-                min-width: 36px;
             }
         }
 

@@ -3557,9 +3557,10 @@
         }
 
         .wa-chat-input-area {
-            padding: 12px 12px 16px 12px;
+            padding: 10px 10px 14px 10px;
             background: var(--wa-darker);
-            display: flex;
+            display: grid;
+            grid-template-columns: 26px 1fr 40px;
             align-items: center;
             gap: 8px;
         }
@@ -3571,20 +3572,20 @@
         }
 
         .wa-chat-input {
-            flex: 1;
+            width: 100%;
             min-width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
-            padding: 10px 18px;
+            padding: 9px 12px;
             color: #e9edef;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: inherit;
         }
 
         .wa-send-button {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             background: var(--wa-green);
             border: none;
             border-radius: 50%;
@@ -8675,8 +8676,7 @@
         @media (max-width: 480px) {
             .wa-iphone-mockup { width: 260px; height: 550px; border-radius: 40px; }
             .wa-phone-screen { border-radius: 40px 40px 0 0; }
-            .wa-chat-input-area { padding: 10px 16px 16px 10px; }
-            .wa-send-button { width: 34px; height: 34px; min-width: 34px; }
+            .wa-send-button { width: 34px; height: 34px; }
             .hero-v2 { padding: 90px 16px 50px; }
             .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
             .hero-metric { padding: 20px 10px; }
