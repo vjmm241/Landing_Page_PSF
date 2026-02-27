@@ -491,6 +491,171 @@
             box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
         }
 
+        /* === NAV PROFESIONAL === */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-right: 20px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 14px;
+            right: 14px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* === HAMBURGER === */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px 10px;
+            width: 42px;
+            height: 42px;
+            transition: border-color 0.2s;
+        }
+
+        .hamburger-btn:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* === MENÚ MÓVIL === */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 76px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 15, 28, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 20px 24px;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 998;
+            border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: menuSlideDown 0.25s ease;
+        }
+
+        @keyframes menuSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .mobile-nav-link:hover {
+            color: white;
+            background: rgba(249, 115, 22, 0.08);
+            border-color: rgba(249, 115, 22, 0.15);
+        }
+
+        .mobile-nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--danger));
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+        }
+
+        .mobile-nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
+        }
+
         .scroll-progress {
             position: absolute;
             bottom: 0;
@@ -3725,7 +3890,7 @@
         @media (max-width: 1100px) {
             .wa-demo-section-content {
                 grid-template-columns: 1fr;
-                gap: 80px;
+                gap: 50px;
             }
 
             .wa-content-col {
@@ -3740,6 +3905,19 @@
 
             .wa-stats-row-replica {
                 justify-content: center !important;
+            }
+
+            /* Orden en móvil: copy primero, mockup segundo, features tercero */
+            .wa-content-left {
+                order: 1;
+            }
+
+            .wa-phone-container {
+                order: 2;
+            }
+
+            .wa-content-right {
+                order: 3;
             }
         }
 
@@ -4284,6 +4462,19 @@
                 padding: 12px 20px;
             }
 
+            /* Menú móvil: ocultar links y CTA, mostrar hamburger */
+            .nav-links {
+                display: none;
+            }
+
+            .main-nav .header-cta {
+                display: none;
+            }
+
+            .hamburger-btn {
+                display: flex;
+            }
+
             .hero {
                 padding: 120px 20px 80px;
             }
@@ -4368,6 +4559,22 @@
             .iphone-mockup {
                 width: 280px;
                 height: 600px;
+            }
+
+            /* Fix botón enviar en móvil: teléfono WhatsApp demo */
+            .wa-iphone-mockup {
+                width: 285px;
+                height: 620px;
+            }
+
+            .wa-chat-input-area {
+                padding: 10px 14px 18px 10px;
+            }
+
+            .wa-send-button {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
             }
         }
 
@@ -4559,12 +4766,32 @@
             <a href="#" class="logo">
                 <img src="assets/images/Logo_PSF_Blanco.png" alt="ProSmart Factories">
             </a>
-            <nav aria-label="Navegación principal">
-                <a href="#calculadora" class="header-cta">Calcular Mis Pérdidas</a>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <div class="nav-links">
+                    <a href="#demo" class="nav-link">Demo</a>
+                    <a href="#calculadora" class="nav-link">Calcular</a>
+                    <a href="#precios" class="nav-link">Precios</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
+                </div>
+                <a href="#calculadora" class="header-cta">Calcular Pérdidas</a>
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </nav>
         </div>
         <div class="scroll-progress" id="scroll-progress"></div>
     </header>
+
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="#demo" class="mobile-nav-link">Demo</a>
+        <a href="#calculadora" class="mobile-nav-link">Calcular</a>
+        <a href="#precios" class="mobile-nav-link">Precios</a>
+        <a href="#contacto" class="mobile-nav-link">Contacto</a>
+        <a href="#calculadora" class="mobile-nav-cta">Calcular Pérdidas</a>
+    </div>
 
     <main id="main-content">
 
@@ -6202,7 +6429,7 @@
             </section>
 
             <!-- PRICING SECTION - REVOLUTION 2.0 -->
-            <section class="pricing-revolution">
+            <section class="pricing-revolution" id="precios">
                 <!-- Live Money Counter Background -->
                 <div class="money-burn-overlay">
                     <div class="burn-particles" id="burn-particles"></div>
@@ -9970,6 +10197,44 @@
                 initAboutNeuralBg();
             }
         });
+    </script>
+
+    <script>
+        // === HAMBURGER MENU ===
+        (function () {
+            const btn = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+
+            function closeMenu() {
+                btn.classList.remove('open');
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                menu.setAttribute('aria-hidden', 'true');
+            }
+
+            btn.addEventListener('click', function () {
+                const isOpen = menu.classList.toggle('open');
+                btn.classList.toggle('open', isOpen);
+                btn.setAttribute('aria-expanded', String(isOpen));
+                menu.setAttribute('aria-hidden', String(!isOpen));
+            });
+
+            // Cerrar al hacer click en un link del menú móvil
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Cerrar al hacer scroll
+            window.addEventListener('scroll', closeMenu, { passive: true });
+
+            // Cerrar al hacer click fuera
+            document.addEventListener('click', function (e) {
+                if (!btn.contains(e.target) && !menu.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+        })();
     </script>
 </body>
 
