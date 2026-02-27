@@ -3725,7 +3725,7 @@
         @media (max-width: 1100px) {
             .wa-demo-section-content {
                 grid-template-columns: 1fr;
-                gap: 80px;
+                gap: 50px;
             }
 
             .wa-content-col {
@@ -3741,6 +3741,11 @@
             .wa-stats-row-replica {
                 justify-content: center !important;
             }
+
+            /* Orden en móvil: copy primero, mockup segundo, features tercero */
+            .wa-content-left { order: 1; }
+            .wa-phone-container { order: 2; }
+            .wa-content-right { order: 3; }
         }
 
         .features-section {
@@ -4175,48 +4180,6 @@
             transform: translateX(5px);
         }
 
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            padding: 10px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999;
-            border-top: 1px solid var(--border);
-            backdrop-filter: blur(20px);
-            transform: translateY(100%);
-            transition: transform 0.5s ease;
-        }
-
-        .sticky-cta.visible {
-            transform: translateY(0);
-        }
-
-        .sticky-cta-text {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-
-        .sticky-cta-btn {
-            background: white;
-            color: var(--bg);
-            padding: 10px 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.4s;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .sticky-cta-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
-        }
-
         @media (max-width: 1200px) {
             .wa-demo-layout {
                 grid-template-columns: 1fr;
@@ -4346,17 +4309,6 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .sticky-cta {
-                flex-direction: column;
-                gap: 14px;
-                padding: 18px 20px;
-            }
-
-            .sticky-cta-btn {
-                width: 100%;
                 text-align: center;
             }
 
@@ -4570,11 +4522,13 @@
                 <span></span><span></span><span></span>
             </button>
         </nav>
-        <!-- Mobile nav overlay -->
+        <!-- Mobile nav dropdown -->
         <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
             <a href="#demo" onclick="closeMobileNav()">Demo</a>
             <a href="#calculadora" onclick="closeMobileNav()">Calcular</a>
             <a href="#pricing" onclick="closeMobileNav()">Precios</a>
+            <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
+            <a href="nuestra-solucion.html" class="mobile-nav-cta">► Probar Demo</a>
         </div>
         <div class="scroll-progress" id="scroll-progress"></div>
     </header>
@@ -4585,16 +4539,13 @@
             <div class="hero-v2-layout">
                 <!-- LEFT: Text column -->
                 <div class="hero-v2-text">
-                    <div class="badge" style="margin-bottom:20px;">
-                        <div class="pulse-dot"></div> Demo en Vivo · RAG Industrial · WhatsApp
-                    </div>
-                    <h1 class="hero-title" id="hero-title">Su fábrica pierde dinero cada hora que un operario no tiene <span class="hl">respuesta técnica</span></h1>
-                    <p class="hero-sub" style="margin-left:0; margin-bottom:36px;">Asistente IA vía WhatsApp entrenado con sus propios manuales. Responde en menos de <strong style="color:white;">3 segundos</strong>, 24 horas al día, sin intervención humana.</p>
+                    <h1 class="hero-title" id="hero-title">Su fábrica pierde dinero cada minuto por un operario que espera una <span class="hl">respuesta técnica</span></h1>
+                    <p class="hero-sub" style="margin-left:0; margin-bottom:36px;">Encargado Digital vía WhatsApp entrenado con sus propios manuales. Responde en menos de <strong style="color:white;">3 segundos</strong>, 24 horas al día, sin intervención humana.</p>
                     <div class="hero-features">
-                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="hero-feat-text"><strong>Respuesta &lt;3 seg</strong><span>Desde cualquier puesto, sin desplazamientos</span></div></div>
-                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="hero-feat-text"><strong>Sus propios manuales</strong><span>RAG — solo responde con información verificada</span></div></div>
-                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div class="hero-feat-text"><strong>Canal WhatsApp</strong><span>Sin apps nuevas. El canal que ya usan</span></div></div>
-                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="hero-feat-text"><strong>€30,000/mes ahorrados</strong><span>Promedio en plantas de 20–80 operarios</span></div></div>
+                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="hero-feat-text"><strong>Respuesta en 3 segundos</strong><span>Sin llamadas, sin desplazamientos, sin esperas</span></div></div>
+                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="hero-feat-text"><strong>Sus propios manuales</strong><span>Entrenado con su documentación. Solo responde lo que está verificado</span></div></div>
+                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div class="hero-feat-text"><strong>Canal que ya usan</strong><span>WhatsApp. Sin apps nuevas, sin formación previa</span></div></div>
+                        <div class="hero-feat"><div class="hero-feat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="hero-feat-text"><strong>€30.000/mes de ahorro</strong><span>Demostrado en plantas de 20–50 operarios</span></div></div>
                     </div>
                     <div class="hero-btns" style="margin-top:36px;">
                         <a href="nuestra-solucion.html" class="btn-primary"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> Probar Demo Gratis</a>
@@ -4604,6 +4555,9 @@
                 <!-- RIGHT: iPhone mockup -->
                 <div class="hero-v2-visual">
                     <div class="hero-phone-wrapper">
+                        <div class="hero-phone-badge">
+                            <div class="pulse-dot"></div> Demo en Vivo · WhatsApp
+                        </div>
                         <div class="wa-iphone-mockup">
                             <div class="wa-dynamic-island"></div>
                             <div class="wa-phone-screen">
@@ -6304,7 +6258,7 @@
             </section>
 
             <!-- PRICING SECTION - REVOLUTION 2.0 -->
-            <section class="pricing-revolution">
+            <section class="pricing-revolution" id="pricing">
                 <!-- Live Money Counter Background -->
                 <div class="money-burn-overlay">
                     <div class="burn-particles" id="burn-particles"></div>
@@ -8219,17 +8173,6 @@
         </footer>
     </main>
 
-    <div class="sticky-cta" id="sticky-cta" style="transform: translateY(100%); opacity: 0;">
-        <div class="sticky-cta-text">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 6px;">
-                <line x1="12" y1="1" x2="12" y2="23" />
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-            Su planta está perdiendo dinero ahora mismo
-        </div>
-        <a href="#calculadora" class="sticky-cta-btn">Calcular Pérdidas</a>
-    </div>
 
     <!-- Cookie Banner -->
     <div class="cookie-banner" id="cookie-banner">
@@ -8383,15 +8326,13 @@
     </style>
 
     <script>
-        // Cookie Banner & Sticky CTA Logic
+        // Cookie Banner Logic
         (function () {
             const cookieBanner = document.getElementById('cookie-banner');
             const cookieAccept = document.getElementById('cookie-accept');
-            const stickyCta = document.getElementById('sticky-cta');
 
             let scrollStartTime = null;
             let cookieHidden = false;
-            let ctaShown = false;
 
             // Check if cookies already accepted
             if (localStorage.getItem('cookiesAccepted') === 'true') {
@@ -8431,16 +8372,6 @@
                     }
                 }, 500);
             });
-
-            // Show sticky CTA after 30 seconds
-            setTimeout(function () {
-                if (!ctaShown && stickyCta) {
-                    stickyCta.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease';
-                    stickyCta.style.transform = 'translateY(0)';
-                    stickyCta.style.opacity = '1';
-                    ctaShown = true;
-                }
-            }, 30000);
         })();
     </script>
 
@@ -8584,15 +8515,52 @@
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         .mobile-nav {
-            position: fixed; inset: 0; background: rgba(10,15,28,0.98);
-            backdrop-filter: blur(20px); z-index: 1050; display: flex;
-            flex-direction: column; align-items: center; justify-content: center;
-            gap: 40px; transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed;
+            top: 76px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 15, 28, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 16px 20px 24px;
+            border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
-        .mobile-nav.open { transform: translateY(0); }
-        .mobile-nav a { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; color: white; text-decoration: none; transition: color 0.2s; }
-        .mobile-nav a:hover { color: var(--primary); }
+        .mobile-nav.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .mobile-nav a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .mobile-nav a:hover { color: white; background: rgba(249,115,22,0.08); border-color: rgba(249,115,22,0.15); }
+        .mobile-nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--danger)) !important;
+            color: white !important;
+            padding: 14px 24px !important;
+            border-radius: 10px !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            letter-spacing: 1.5px !important;
+            text-align: center !important;
+            margin-top: 10px !important;
+            border: none !important;
+            box-shadow: 0 4px 20px rgba(249,115,22,0.3);
+        }
         @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .header-cta { display: none; } }
 
         /* Logo marquee section */
@@ -8648,8 +8616,9 @@
         .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
         /* Hero iPhone Mockup V2 */
         .hero-v2 { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
-        .hero-phone-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .hero-v2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; width: 100%; margin: 0 auto; }
+        .hero-phone-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .hero-phone-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 100px; padding: 8px 18px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+        .hero-v2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1300px; width: 100%; margin: 0 auto; }
         .hero-v2-text { text-align: left; }
         .hero-v2-text .hero-title { text-align: left; }
         .hero-v2-text .hero-sub { text-align: left; margin-left: 0; }
@@ -8681,13 +8650,43 @@
         .chat-bubble.out { background: #005c4b; align-self: flex-end; border-top-right-radius: 2px; }
         .chat-bubble.in { background: #202c33; align-self: flex-start; border-top-left-radius: 2px; }
         .chat-bubble-time { font-size: 0.58rem; color: rgba(255,255,255,0.42); text-align: right; margin-top: 3px; }
+        .chat-bubble-sender { font-size: 0.63rem; font-weight: 700; margin-bottom: 3px; color: #53bdeb; }
+        .chat-bubble.in .chat-bubble-sender { color: #25D366; }
         .chat-typing { background: #202c33; padding: 10px 12px; border-radius: 8px; border-top-left-radius: 2px; align-self: flex-start; display: flex; gap: 4px; align-items: center; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
         .chat-typing.visible { opacity: 1; transform: translateY(0); }
         .chat-typing-dot { width: 5px; height: 5px; background: #aebac1; border-radius: 50%; animation: typingBounce 1.4s infinite ease-in-out both; }
         .chat-typing-dot:nth-child(1) { animation-delay: -0.32s; }
         .chat-typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @media (max-width: 1080px) { .hero-v2-layout { grid-template-columns: 1fr; gap: 50px; } .hero-v2-text .hero-title, .hero-v2-text .hero-sub { text-align: center; } .hero-v2-text .hero-btns { justify-content: center; } .hero-v2-visual { order: -1; } .phone-badge-live { right: -20px; } .phone-badge-speed { left: -20px; } }
-        @media (max-width: 640px) { .hero-iphone-frame { width: 250px; } .hero-iphone-screen { height: 450px; } .phone-badge { display: none; } }
+        /* ── HERO RESPONSIVE ── */
+        @media (max-width: 1080px) {
+            .hero-v2-layout { grid-template-columns: 1fr; gap: 40px; }
+            .hero-v2-text { text-align: center; }
+            .hero-v2-text .hero-title, .hero-v2-text .hero-sub { text-align: center; }
+            .hero-v2-text .hero-btns { justify-content: center; }
+            .hero-v2-text .hero-features { max-width: 560px; margin-left: auto; margin-right: auto; }
+            .hero-v2-text .hero-feat { text-align: left; }
+            .hero-v2-visual { order: 2; width: 100%; }
+            .hero-phone-badge { margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            .hero-v2 { padding: 100px 20px 60px; }
+            .hero-metrics-bar { margin-top: 40px; }
+            .wa-iphone-mockup { width: 290px; height: 610px; }
+            .form-wrapper { padding: 30px 22px; border-radius: 20px; }
+        }
+        @media (max-width: 480px) {
+            .wa-iphone-mockup { width: 260px; height: 550px; border-radius: 40px; }
+            .wa-phone-screen { border-radius: 30px; }
+            /* Fix botón enviar recortado en pantallas pequeñas */
+            .wa-chat-input-area { padding: 10px 14px 18px 10px; }
+            .wa-send-button { width: 36px; height: 36px; min-width: 36px; }
+            .hero-v2 { padding: 90px 16px 50px; }
+            .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
+            .hero-metric { padding: 20px 10px; }
+            .hero-metric-value { font-size: 2.2rem; }
+            .form-wrapper { padding: 24px 16px; border-radius: 16px; }
+            .calc-inputs { padding: 24px 16px; border-radius: 20px; }
+        }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -9117,12 +9116,10 @@
         function initScrollEffects() {
             const header = document.getElementById('header');
             const progress = document.getElementById('scroll-progress');
-            const stickyCta = document.getElementById('sticky-cta');
 
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY > 100;
                 header.classList.toggle('scrolled', scrolled);
-                stickyCta.classList.toggle('visible', window.scrollY > 500);
 
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                 const scrollPercent = (window.scrollY / docHeight) * 100;
@@ -10401,29 +10398,33 @@
 
             var convs = [
                 {
-                    out: '¿Cuál es la presión máx de la bomba HX-420?',
-                    inp: 'Según manual §4.2: presión máxima 250 bar. Alarma a 280 bar. Temp. máx aceite: 80°C ✅'
+                    nombre: 'Carlos - Soldador',
+                    out: '¿Qué amperaje uso para soldar aluminio 6061 de 4mm con TIG?',
+                    inp: 'Para 6061 de 4mm TIG: 140-160A CA. Electrodo tungsteno puro 3.2mm. Argón 100%, 12-15 L/min. Limpia el óxido antes de empezar. ✅'
                 },
                 {
+                    nombre: 'Miguel - CNC',
                     out: 'La CNC marca error E-04, ¿qué hago?',
                     inp: 'Error E-04: fallo servo eje X.\n1. Reiniciar servoaccionamiento\n2. Verificar cable encoder\n3. Revisar param. P203\n→ Si persiste, llamar SAT 🔧'
                 },
                 {
-                    out: '¿Qué aceite lleva la reductora del eje 3?',
-                    inp: 'Aceite ISO VG 220. Capacidad: 2,5 L.\nCambio cada 4.000h o 12 meses.\nAprobado: Mobil Gear 600 XP 220 📋'
+                    nombre: 'Pedro - Andamios',
+                    out: '¿Carga máx. andamio clase 3 según UNE-EN 12811?',
+                    inp: 'Clase 3: 200 kg/m². Vano máx. 2,5m. Plataformas ancho mín. 0,6m. Resistencia caída libre 150 kg. ✅'
                 },
                 {
-                    out: 'Norma soldadura para acero S275',
-                    inp: 'EN ISO 15614-1. Grupo mat. 1.1.\nPrecalentamiento mín: 75°C (>25mm).\nConsumo: ER70S-6. 🔩'
+                    nombre: 'Luis - Mantenimiento',
+                    out: '¿Qué aceite lleva la reductora del eje 3?',
+                    inp: 'ISO VG 220. Capacidad: 2,5 L.\nCambio cada 4.000h o 12 meses.\nAprobado: Mobil Gear 600 XP 220 📋'
                 }
             ];
             var idx = 0;
 
-            function makeBubble(type, text) {
+            function makeBubble(type, sender, text) {
                 var el = document.createElement('div');
                 el.className = 'chat-bubble ' + type;
                 var t = new Date().toLocaleTimeString('es-ES', {hour:'2-digit',minute:'2-digit'});
-                el.innerHTML = text.replace(/\n/g,'<br>') + '<div class="chat-bubble-time">' + t + (type==='out'?' ✓✓':'') + '</div>';
+                el.innerHTML = '<div class="chat-bubble-sender">' + sender + '</div>' + text.replace(/\n/g,'<br>') + '<div class="chat-bubble-time">' + t + (type==='out'?' ✓✓':'') + '</div>';
                 area.appendChild(el);
                 area.scrollTop = area.scrollHeight;
                 requestAnimationFrame(function(){ requestAnimationFrame(function(){ el.classList.add('visible'); }); });
@@ -10444,12 +10445,12 @@
                 var conv = convs[idx % convs.length];
                 area.innerHTML = '';
                 setTimeout(function() {
-                    makeBubble('out', conv.out);
+                    makeBubble('out', conv.nombre, conv.out);
                     setTimeout(function() {
                         var typing = makeTyping();
                         setTimeout(function() {
                             typing.remove();
-                            makeBubble('in', conv.inp);
+                            makeBubble('in', 'Encargado Digital', conv.inp);
                             idx++;
                             setTimeout(runConv, 5500);
                         }, 2400);
