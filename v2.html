@@ -3560,12 +3560,15 @@
         }
 
         .wa-chat-input-area {
+            width: 100%;
+            box-sizing: border-box;
             padding: 8px 10px 12px 10px;
             background: var(--wa-darker);
             display: flex;
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
+            position: relative;
         }
 
         .wa-input-icons-left {
@@ -3580,28 +3583,29 @@
             display: block;
         }
 
-        /* Wrapper que contiene input + botón — el botón va absoluto dentro */
+        /* Wrapper: toma todo el espacio restante */
         .wa-input-wrapper {
-            flex: 1;
+            flex: 1 1 0;
+            width: 0;
             min-width: 0;
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
+        /* width:0 fuerza al navegador a ignorar el ancho mínimo nativo del <input> */
         .wa-chat-input {
+            display: block;
             width: 100%;
             min-width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
-            padding: 9px 46px 9px 14px;
+            padding: 9px 44px 9px 14px;
             color: #e9edef;
             font-size: 0.85rem;
             font-family: inherit;
         }
 
-        /* Botón posicionado absolutamente — siempre visible, nunca desplazado */
+        /* Botón absoluto dentro del wrapper — siempre visible */
         .wa-send-button {
             position: absolute;
             right: 4px;
