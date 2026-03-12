@@ -3583,9 +3583,10 @@
             display: block;
         }
 
-.wa-chat-input {
-            flex: 1;
+        .wa-chat-input {
+            flex: 1 1 0%;
             min-width: 0;
+            width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
@@ -3593,14 +3594,11 @@
             color: #e9edef;
             font-size: 0.85rem;
             font-family: inherit;
+            box-sizing: border-box;
         }
 
-        /* Botón fuera del phone-screen — no puede ser recortado por overflow:hidden */
         .wa-send-button {
-            position: absolute;
-            right: 16px;
-            bottom: 20px;
-            z-index: 10;
+            flex: 0 0 36px;
             width: 36px;
             height: 36px;
             background: var(--wa-green);
@@ -4604,11 +4602,11 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                                     </div>
                                     <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                    <button class="wa-send-button">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                                    </button>
                                 </div>
                             </div>
-                            <button class="wa-send-button">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                            </button>
                         </div>
                         <div class="wa-response-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -6091,13 +6089,13 @@
                                             </svg>
                                         </div>
                                         <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                        <button class="wa-send-button">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
-                                <button class="wa-send-button">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                    </svg>
-                                </button>
                             </div>
 
                             <div class="wa-response-badge">
@@ -8691,7 +8689,7 @@
         @media (max-width: 480px) {
             .wa-iphone-mockup { width: 260px; height: 550px; border-radius: 40px; }
             .wa-phone-screen { border-radius: 40px 40px 0 0; }
-            .wa-send-button { width: 32px; height: 32px; }
+            .wa-send-button { flex: 0 0 32px; width: 32px; height: 32px; }
             .hero-v2 { padding: 90px 16px 50px; }
             .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
             .hero-metric { padding: 20px 10px; }

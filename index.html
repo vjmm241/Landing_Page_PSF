@@ -3749,8 +3749,9 @@
         }
 
         .wa-chat-input {
-            flex: 1;
+            flex: 1 1 0%;
             min-width: 0;
+            width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
@@ -3758,13 +3759,11 @@
             color: #e9edef;
             font-size: 0.85rem;
             font-family: inherit;
+            box-sizing: border-box;
         }
 
         .wa-send-button {
-            position: absolute;
-            right: 16px;
-            bottom: 20px;
-            z-index: 10;
+            flex: 0 0 36px;
             width: 36px;
             height: 36px;
             background: var(--wa-green);
@@ -4586,6 +4585,7 @@
             }
 
             .wa-send-button {
+                flex: 0 0 32px;
                 width: 32px;
                 height: 32px;
             }
@@ -6313,13 +6313,13 @@
                                             </svg>
                                         </div>
                                         <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                        <button class="wa-send-button">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
-                                <button class="wa-send-button">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                    </svg>
-                                </button>
                             </div>
 
                             <div class="wa-response-badge">
