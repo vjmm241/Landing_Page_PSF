@@ -3725,6 +3725,7 @@
         }
 
         .wa-chat-input-area {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -3764,9 +3765,10 @@
 
         .wa-send-button {
             position: absolute;
-            right: 12px;
-            bottom: 14px;
-            z-index: 5;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
             width: 32px;
             height: 32px;
             background: var(--wa-green);
@@ -3776,6 +3778,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .wa-send-button svg {
@@ -6317,12 +6320,12 @@
                                             </svg>
                                         </div>
                                         <div class="wa-chat-input">Escribe un mensaje</div>
+                                        <button class="wa-send-button">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <button class="wa-send-button">
-                                        <svg viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </div>
 
