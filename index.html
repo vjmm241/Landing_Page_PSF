@@ -3725,13 +3725,12 @@
         }
 
         .wa-chat-input-area {
-            display: grid;
-            grid-template-columns: 24px 1fr 36px;
-            column-gap: 8px;
+            display: flex;
             align-items: center;
+            gap: 8px;
             width: 100%;
             box-sizing: border-box;
-            padding: 8px 10px 12px 10px;
+            padding: 8px 52px 12px 10px;
             background: var(--wa-darker);
             flex-shrink: 0;
         }
@@ -3764,8 +3763,12 @@
         }
 
         .wa-send-button {
-            width: 36px;
-            height: 36px;
+            position: absolute;
+            right: 12px;
+            bottom: 14px;
+            z-index: 5;
+            width: 32px;
+            height: 32px;
             background: var(--wa-green);
             border: none;
             border-radius: 50%;
@@ -4584,10 +4587,11 @@
                 border-radius: 40px 40px 0 0;
             }
 
-            .wa-chat-input-area { grid-template-columns: 24px 1fr 32px; }
             .wa-send-button {
                 width: 32px;
                 height: 32px;
+                right: 10px;
+                bottom: 12px;
             }
         }
 
@@ -6313,12 +6317,12 @@
                                             </svg>
                                         </div>
                                         <div class="wa-chat-input">Escribe un mensaje</div>
-                                        <button class="wa-send-button">
-                                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                            </svg>
-                                        </button>
                                     </div>
+                                    <button class="wa-send-button">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
 
