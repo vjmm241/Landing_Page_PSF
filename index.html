@@ -3748,21 +3748,13 @@
             display: block;
         }
 
-        .wa-input-wrapper {
-            flex: 1 1 0;
-            width: 0;
-            min-width: 0;
-            position: relative;
-        }
-
         .wa-chat-input {
-            display: block;
-            width: 100%;
+            flex: 1;
             min-width: 0;
             background: var(--wa-bubble-in);
             border: none;
             border-radius: 25px;
-            padding: 9px 44px 9px 14px;
+            padding: 9px 14px;
             color: #e9edef;
             font-size: 0.85rem;
             font-family: inherit;
@@ -3770,9 +3762,9 @@
 
         .wa-send-button {
             position: absolute;
-            right: 4px;
-            top: 50%;
-            transform: translateY(-50%);
+            right: 16px;
+            bottom: 20px;
+            z-index: 10;
             width: 36px;
             height: 36px;
             background: var(--wa-green);
@@ -6320,17 +6312,15 @@
                                                 <line x1="15" y1="9" x2="15.01" y2="9" />
                                             </svg>
                                         </div>
-                                        <div class="wa-input-wrapper">
-                                            <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
-                                            <button class="wa-send-button">
-                                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                                                </svg>
-                                            </button>
-                                        </div>
+                                        <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
                                     </div>
                                 </div>
                             </div>
+                            <button class="wa-send-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                </svg>
+                            </button>
 
                             <div class="wa-response-badge">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
