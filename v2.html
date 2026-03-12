@@ -3586,13 +3586,16 @@
             min-width: 0;
             width: 100%;
             background: var(--wa-bubble-in);
-            border: none;
             border-radius: 25px;
             padding: 9px 14px;
-            color: #e9edef;
+            color: rgba(233, 237, 239, 0.45);
             font-size: 0.85rem;
             font-family: inherit;
             box-sizing: border-box;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            user-select: none;
         }
 
         .wa-send-button {
@@ -4598,7 +4601,7 @@
                                     <div class="wa-input-icons-left">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                                     </div>
-                                    <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                    <div class="wa-chat-input">Escribe un mensaje</div>
                                     <button class="wa-send-button">
                                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                                     </button>
@@ -6085,7 +6088,7 @@
                                                 <line x1="15" y1="9" x2="15.01" y2="9" />
                                             </svg>
                                         </div>
-                                        <input type="text" class="wa-chat-input" placeholder="Escribe un mensaje" readonly>
+                                        <div class="wa-chat-input">Escribe un mensaje</div>
                                         <button class="wa-send-button">
                                             <svg viewBox="0 0 24 24" fill="currentColor">
                                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
