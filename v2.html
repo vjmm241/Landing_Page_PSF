@@ -3306,6 +3306,7 @@
             background: var(--wa-darker);
             border-radius: 40px 40px 0 0;
             overflow: hidden;
+            contain: paint;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -3562,9 +3563,8 @@
         .wa-chat-input-area {
             display: flex;
             align-items: center;
-            width: 100%;
             box-sizing: border-box;
-            padding: 8px 8px 12px 10px;
+            padding: 8px 16px 12px 10px;
             gap: 6px;
             background: var(--wa-darker);
             flex-shrink: 0;
@@ -3600,6 +3600,7 @@
 
         .wa-send-button {
             flex: 0 0 28px;
+            min-width: 28px;
             width: 28px;
             height: 28px;
             background: #25D366;
