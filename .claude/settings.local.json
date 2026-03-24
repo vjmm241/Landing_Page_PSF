@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(git checkout:*)",
+      "Bash(/tmp/transform_v2.js:*)",
+      "Bash(__NEW_LINE_641538620e05e4f4__ node -e \":*)",
+      "Bash(TMPDIR=\"C:/Users/victo/AppData/Local/Temp\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

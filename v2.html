@@ -622,6 +622,16 @@
             animation: gradientShift 5s ease infinite;
         }
 
+        .calc-main-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            text-transform: uppercase;
+            color: var(--primary);
+            background: none;
+            -webkit-text-fill-color: initial;
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+            line-height: 1;
+        }
+
         @keyframes gradientShift {
 
             0%,
@@ -3304,7 +3314,7 @@
             width: 100%;
             height: 100%;
             background: var(--wa-darker);
-            border-radius: 40px 40px 0 0;
+            border-radius: 38px;
             overflow: hidden;
             contain: paint;
             position: relative;
@@ -3564,10 +3574,12 @@
             display: flex;
             align-items: center;
             box-sizing: border-box;
-            padding: 8px 16px 12px 10px;
+            padding: 8px 14px 12px 10px;
             gap: 6px;
             background: var(--wa-darker);
             flex-shrink: 0;
+            width: 100%;
+            max-width: 100%;
         }
 
         .wa-input-icons-left {
@@ -3583,7 +3595,8 @@
         }
 
         .wa-chat-input {
-            flex: 1;
+            flex: 1 1 0px;
+            width: 0;
             min-width: 0;
             overflow: hidden;
             background: var(--wa-bubble-in);
@@ -3599,10 +3612,10 @@
         }
 
         .wa-send-button {
-            flex: 0 0 28px;
-            min-width: 28px;
-            width: 28px;
-            height: 28px;
+            flex: 0 0 36px;
+            min-width: 36px;
+            width: 36px;
+            height: 36px;
             background: #25D366;
             border: none;
             border-radius: 50%;
@@ -3613,9 +3626,10 @@
         }
 
         .wa-send-button svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             color: white;
+            margin-left: -2px; /* Alineación ligera al centro para el ícono de envío */
         }
 
         .wa-operario-indicator {
@@ -4336,6 +4350,12 @@
                 width: 280px;
                 height: 600px;
             }
+
+            /* Fix botón enviar en móvil y dimensiones: teléfono WhatsApp demo */
+            .wa-iphone-mockup {
+                width: 300px;
+                height: 600px;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -4675,7 +4695,7 @@
                     <div class="badge">
                         <div class="pulse-dot"></div> Diagnóstico Gratuito
                     </div>
-                    <h2 class="section-title">¿Cuánto Dinero Está Perdiendo Su Planta?</h2>
+                    <h2 class="section-title calc-main-title">¿CUÁNTO DINERO ESTÁ PERDIENDO SU PLANTA?</h2>
                     <p class="section-sub">Complete los datos de su operación y descubra el costo real de los tiempos
                         muertos</p>
                 </div>
@@ -8704,12 +8724,16 @@
         @media (max-width: 768px) {
             .hero-v2 { padding: 100px 20px 60px; }
             .hero-metrics-bar { margin-top: 40px; }
-            .wa-iphone-mockup { width: 290px; height: 610px; }
+            .wa-iphone-mockup { width: 300px; height: 600px; }
             .form-wrapper { padding: 30px 22px; border-radius: 20px; }
         }
         @media (max-width: 480px) {
-            .wa-iphone-mockup { width: 260px; height: 550px; border-radius: 40px; }
-            .wa-phone-screen { border-radius: 40px 40px 0 0; }
+            .wa-iphone-mockup { width: 285px; height: 580px; border-radius: 40px; }
+            .wa-phone-screen { border-radius: 28px; } /* Encaja en el radio interior (40-12=28) */
+            .wa-chat-input-area { padding: 8px 12px 10px 8px; gap: 4px; box-sizing: border-box; } 
+            .wa-chat-input { padding: 8px 10px; font-size: 0.8rem; flex: 1 1 0px; width: 0; }
+            .wa-send-button { flex: 0 0 32px; width: 32px; height: 32px; min-width: 32px; margin-right: 4px; }
+            .wa-send-button svg { width: 16px; height: 16px; }
             .hero-v2 { padding: 90px 16px 50px; }
             .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
             .hero-metric { padding: 20px 10px; }
