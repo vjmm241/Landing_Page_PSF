@@ -634,6 +634,19 @@
             }
         }
 
+        .calc-main-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--primary) 0%, #ffae42 50%, var(--danger) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+            line-height: 1;
+            animation: gradientShift 5s ease infinite;
+        }
+
         .section-sub {
             font-size: 1.1rem;
             color: var(--muted);
@@ -3260,8 +3273,10 @@
         .wa-phone-container {
             position: relative;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 0;
         }
 
         .wa-iphone-mockup {
@@ -3616,7 +3631,8 @@
             width: 18px;
             height: 18px;
             color: white;
-            margin-left: -2px;
+            margin: 0;
+            transform: translateX(1px);
         }
 
         .wa-operario-indicator {
@@ -3708,20 +3724,23 @@
         }
 
         .wa-response-badge {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
+            margin-top: 20px;
+            left: auto;
+            transform: none;
             background: linear-gradient(135deg, var(--wa-green), var(--wa-light-green));
             padding: 12px 30px;
             border-radius: 50px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
             z-index: 10;
             white-space: nowrap;
             width: max-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .wa-response-badge svg {
@@ -3741,7 +3760,7 @@
         @media (max-width: 1100px) {
             .wa-demo-section-content {
                 grid-template-columns: 1fr;
-                gap: 80px;
+                gap: 60px;
             }
 
             .wa-content-col {
@@ -4680,7 +4699,7 @@
                     <div class="badge">
                         <div class="pulse-dot"></div> Diagnóstico Gratuito
                     </div>
-                    <h2 class="section-title">¿Cuánto Dinero Está Perdiendo Su Planta?</h2>
+                    <h2 class="section-title calc-main-title">¿CUÁNTO DINERO ESTÁ PERDIENDO SU PLANTA?</h2>
                     <p class="section-sub">Complete los datos de su operación y descubra el costo real de los tiempos
                         muertos</p>
                 </div>
@@ -8669,7 +8688,7 @@
             .wa-chat-input-area { padding: 8px 10px 10px 8px; gap: 4px; }
             .wa-chat-input { padding: 8px 10px; font-size: 0.8rem; }
             .wa-send-button { flex: 0 0 32px; min-width: 32px; width: 32px; height: 32px; margin-right: 4px; }
-            .wa-send-button svg { width: 16px; height: 16px; }
+            .wa-send-button svg { width: 16px; height: 16px; margin: 0; transform: translateX(1px); }
         }
     </style>
 

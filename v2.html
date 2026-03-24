@@ -634,6 +634,18 @@
             }
         }
 
+        .calc-main-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--primary) 0%, #ffae42 50%, var(--danger) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            animation: gradientShift 5s ease infinite;
+        }
+
         .section-sub {
             font-size: 1.1rem;
             color: var(--muted);
@@ -3620,7 +3632,8 @@
             width: 20px;
             height: 20px;
             color: white;
-            margin-left: -2px; /* Alineación ligera al centro para el ícono de envío */
+            margin: 0;
+            transform: translateX(1px);
         }
 
         .wa-operario-indicator {
@@ -3712,20 +3725,23 @@
         }
 
         .wa-response-badge {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
+            margin-top: 20px;
+            left: auto;
+            transform: none;
             background: linear-gradient(135deg, var(--wa-green), var(--wa-light-green));
             padding: 12px 30px;
             border-radius: 50px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
             z-index: 10;
             white-space: nowrap;
             width: max-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .wa-response-badge svg {
@@ -3745,7 +3761,7 @@
         @media (max-width: 1100px) {
             .wa-demo-section-content {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 60px;
             }
 
             .wa-content-col {
@@ -8724,7 +8740,7 @@
             .wa-chat-input-area { padding: 8px 12px 10px 8px; gap: 4px; box-sizing: border-box; } 
             .wa-chat-input { padding: 8px 10px; font-size: 0.8rem; flex: 1 1 0px; width: 0; }
             .wa-send-button { flex: 0 0 32px; width: 32px; height: 32px; min-width: 32px; margin-right: 4px; }
-            .wa-send-button svg { width: 16px; height: 16px; }
+            .wa-send-button svg { width: 16px; height: 16px; margin: 0; transform: translateX(1px); }
             .hero-v2 { padding: 90px 16px 50px; }
             .hero-metrics-bar { margin-top: 30px; border-radius: 14px; }
             .hero-metric { padding: 20px 10px; }
